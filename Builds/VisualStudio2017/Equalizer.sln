@@ -1,0 +1,38 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2017
+
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Equalizer - Standalone Plugin", "Equalizer_StandalonePlugin.vcxproj", "{7BC6C52D-1E53-63BE-0DB2-47B4C35B218D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{32C892CC-DAB3-7172-00B1-29C46C4DC71B} = {32C892CC-DAB3-7172-00B1-29C46C4DC71B}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Equalizer - VST3", "Equalizer_VST3.vcxproj", "{794781EF-3F28-2473-13F2-CFD224C411EB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{32C892CC-DAB3-7172-00B1-29C46C4DC71B} = {32C892CC-DAB3-7172-00B1-29C46C4DC71B}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Equalizer - Shared Code", "Equalizer_SharedCode.vcxproj", "{32C892CC-DAB3-7172-00B1-29C46C4DC71B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{794781EF-3F28-2473-13F2-CFD224C411EB}.Debug|x64.ActiveCfg = Debug|x64
+		{794781EF-3F28-2473-13F2-CFD224C411EB}.Debug|x64.Build.0 = Debug|x64
+		{794781EF-3F28-2473-13F2-CFD224C411EB}.Release|x64.ActiveCfg = Release|x64
+		{794781EF-3F28-2473-13F2-CFD224C411EB}.Release|x64.Build.0 = Release|x64
+		{7BC6C52D-1E53-63BE-0DB2-47B4C35B218D}.Debug|x64.ActiveCfg = Debug|x64
+		{7BC6C52D-1E53-63BE-0DB2-47B4C35B218D}.Debug|x64.Build.0 = Debug|x64
+		{7BC6C52D-1E53-63BE-0DB2-47B4C35B218D}.Release|x64.ActiveCfg = Release|x64
+		{7BC6C52D-1E53-63BE-0DB2-47B4C35B218D}.Release|x64.Build.0 = Release|x64
+		{32C892CC-DAB3-7172-00B1-29C46C4DC71B}.Debug|x64.ActiveCfg = Debug|x64
+		{32C892CC-DAB3-7172-00B1-29C46C4DC71B}.Debug|x64.Build.0 = Debug|x64
+		{32C892CC-DAB3-7172-00B1-29C46C4DC71B}.Release|x64.ActiveCfg = Release|x64
+		{32C892CC-DAB3-7172-00B1-29C46C4DC71B}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
