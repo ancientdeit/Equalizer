@@ -25,13 +25,13 @@ EqualizerAudioProcessor::EqualizerAudioProcessor()
                        )
 #endif
 {
-	addParameter(lowParam = new AudioParameterFloat("LOWEQ", "Bass Freq", { 0.f, 500.f, 0.f, 0.5f }, 0.5f, "Hz"));
-	addParameter(gainlowParam = new AudioParameterFloat("LOWEQG", "Bass Level", { -15.f, 15.f, 0.f, 0.5f }, 0.f, "dB"));
-	addParameter(topParam = new AudioParameterFloat("TOPEQ", "Treble Freq", { 1000.f, 5000.f, 0.f, 0.5f }, 1000.f, "Hz"));
-	addParameter(gaintopParam = new AudioParameterFloat("TOPEQG", "Treble Level", { -15.f, 15.f, 0.f, 0.5f }, 0.f, "dB"));
-	addParameter(peakParam = new AudioParameterFloat("PEAKEQ", "Peak Freq", { 500.f, 1000.f, 0.f, 0.5f }, 500.f, "Hz"));
-	addParameter(bandpeakParam = new AudioParameterFloat("PEAKEQB", "Peak Band Freq", { 10.f, 300.f, 0.f, 0.5f }, 10.f, "Hz"));
-	addParameter(gainpeakParam = new AudioParameterFloat("PEAKEQG", "Peak Level", { -15.f, 15.f, 0.f, 0.5f }, 0.f, "dB"));
+	addParameter(lowParam = new AudioParameterFloat("LOWEQ", "Bass Freq", { 10.f, 200.f, 1.f}, 100.0f, "Hz")); //start, end, interval, default
+	addParameter(gainlowParam = new AudioParameterFloat("LOWEQG", "Bass Level", { -15.f, 15.f, 1.f}, 0.f, "dB"));
+	addParameter(topParam = new AudioParameterFloat("TOPEQ", "Treble Freq", { 4000.f, 15000.f, 100.f}, 9000.f, "Hz"));
+	addParameter(gaintopParam = new AudioParameterFloat("TOPEQG", "Treble Level", { -15.f, 15.f, 0.f}, 0.f, "dB"));
+	addParameter(peakParam = new AudioParameterFloat("PEAKEQ", "Peak Freq", { 500.f, 4000.f, 10.f }, 1000.f, "Hz"));
+	addParameter(bandpeakParam = new AudioParameterFloat("PEAKEQB", "Peak Band Freq", { 10.f, 1000.f, 10.f}, 100.f, "Hz"));
+	addParameter(gainpeakParam = new AudioParameterFloat("PEAKEQG", "Peak Level", { -15.f, 15.f, 0.f}, 0.f, "dB"));
 
 	basseq = new EQ(LowShelf);
 	peakeq = new EQ(Peak);

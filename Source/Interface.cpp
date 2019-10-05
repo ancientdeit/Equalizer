@@ -1,251 +1,272 @@
 /*
   ==============================================================================
 
-    This file was auto-generated!
+  This is an automatically generated GUI class created by the Projucer!
 
-    It contains the basic framework code for a JUCE plugin editor.
+  Be careful when adding custom code to these files, as only the code within
+  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
+  and re-saved.
+
+  Created with Projucer version: 5.4.1
+
+  ------------------------------------------------------------------------------
+
+  The Projucer is part of the JUCE library.
+  Copyright (c) 2017 - ROLI Ltd.
 
   ==============================================================================
 */
 
-#include "PluginProcessor.h"
-#include "PluginEditor.h"
+//[Headers] You can add your own extra header files here...
+//[/Headers]
+
+#include "Interface.h"
+
+
+//[MiscUserDefs] You can add your own user definitions and misc code here...
+//[/MiscUserDefs]
 
 //==============================================================================
-EqualizerAudioProcessorEditor::EqualizerAudioProcessorEditor (EqualizerAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p)
+Interface::Interface ()
 {
-    setLookAndFeel(&otherLookAndFeel);
+    //[Constructor_pre] You can add your own custom stuff here..
+    //[/Constructor_pre]
 
-    label.reset(new Label("low_label",
-        TRANS("LOW\n")));
-    addAndMakeVisible(label.get());
-    label->setFont(Font(20.0f, Font::plain).withTypefaceStyle("Bold"));
-    label->setJustificationType(Justification::centred);
-    label->setEditable(false, false, false);
-    label->setColour(Label::textColourId, Colour(0xb0000000));
-    label->setColour(TextEditor::textColourId, Colours::black);
-    label->setColour(TextEditor::backgroundColourId, Colour(0x00000000));
+    label.reset (new Label ("low_label",
+                            TRANS("LOW\n")));
+    addAndMakeVisible (label.get());
+    label->setFont (Font (20.0f, Font::plain).withTypefaceStyle ("Bold"));
+    label->setJustificationType (Justification::centred);
+    label->setEditable (false, false, false);
+    label->setColour (Label::textColourId, Colour (0xb0000000));
+    label->setColour (TextEditor::textColourId, Colours::black);
+    label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label2.reset(new Label("mid_label",
-        TRANS("MID\n")));
-    addAndMakeVisible(label2.get());
-    label2->setFont(Font(20.0f, Font::plain).withTypefaceStyle("Bold"));
-    label2->setJustificationType(Justification::centred);
-    label2->setEditable(false, false, false);
-    label2->setColour(Label::textColourId, Colour(0xb0000000));
-    label2->setColour(TextEditor::textColourId, Colours::black);
-    label2->setColour(TextEditor::backgroundColourId, Colour(0x00000000));
+    label2.reset (new Label ("mid_label",
+                             TRANS("MID\n")));
+    addAndMakeVisible (label2.get());
+    label2->setFont (Font (20.0f, Font::plain).withTypefaceStyle ("Bold"));
+    label2->setJustificationType (Justification::centred);
+    label2->setEditable (false, false, false);
+    label2->setColour (Label::textColourId, Colour (0xb0000000));
+    label2->setColour (TextEditor::textColourId, Colours::black);
+    label2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label3.reset(new Label("high_label",
-        TRANS("HIGH")));
-    addAndMakeVisible(label3.get());
-    label3->setFont(Font(20.0f, Font::plain).withTypefaceStyle("Bold"));
-    label3->setJustificationType(Justification::centred);
-    label3->setEditable(false, false, false);
-    label3->setColour(Label::textColourId, Colour(0xb0000000));
-    label3->setColour(TextEditor::textColourId, Colours::black);
-    label3->setColour(TextEditor::backgroundColourId, Colour(0x00000000));
+    label3.reset (new Label ("high_label",
+                             TRANS("HIGH")));
+    addAndMakeVisible (label3.get());
+    label3->setFont (Font (20.0f, Font::plain).withTypefaceStyle ("Bold"));
+    label3->setJustificationType (Justification::centred);
+    label3->setEditable (false, false, false);
+    label3->setColour (Label::textColourId, Colour (0xb0000000));
+    label3->setColour (TextEditor::textColourId, Colours::black);
+    label3->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    l_freq_slider.reset(new Slider("low_slider"));
-    addAndMakeVisible(l_freq_slider.get());
-    l_freq_slider->setRange(10, 200, 1);
-    l_freq_slider->setValue(100.f);
-    l_freq_slider->setSliderStyle(Slider::LinearVertical);
-    l_freq_slider->setTextBoxStyle(Slider::TextBoxLeft, false, 80, 20);
-    l_freq_slider->setColour(Slider::backgroundColourId, Colours::black);
-    l_freq_slider->setColour(Slider::trackColourId, Colours::black);
-    l_freq_slider->setColour(Slider::rotarySliderFillColourId, Colours::black);
-    l_freq_slider->setColour(Slider::rotarySliderOutlineColourId, Colours::black);
-    l_freq_slider->setColour(Slider::textBoxTextColourId, Colours::white);
-    l_freq_slider->setColour(Slider::textBoxBackgroundColourId, Colours::black);
-    l_freq_slider->setColour(Slider::textBoxOutlineColourId, Colour(0xff707070));
-    l_freq_slider->addListener(this);
+    l_freq_slider.reset (new Slider ("low_slider"));
+    addAndMakeVisible (l_freq_slider.get());
+    l_freq_slider->setRange (10, 200, 1);
+    l_freq_slider->setSliderStyle (Slider::LinearVertical);
+    l_freq_slider->setTextBoxStyle (Slider::TextBoxLeft, false, 80, 20);
+    l_freq_slider->setColour (Slider::backgroundColourId, Colours::black);
+    l_freq_slider->setColour (Slider::trackColourId, Colours::black);
+    l_freq_slider->setColour (Slider::rotarySliderFillColourId, Colours::black);
+    l_freq_slider->setColour (Slider::rotarySliderOutlineColourId, Colours::black);
+    l_freq_slider->setColour (Slider::textBoxTextColourId, Colours::white);
+    l_freq_slider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    l_freq_slider->setColour (Slider::textBoxOutlineColourId, Colour (0xff707070));
+    l_freq_slider->addListener (this);
 
-    l_freq_slider->setBounds(30, 55, 78, 250);
+    l_freq_slider->setBounds (30, 55, 78, 250);
 
-    m_freq_slider.reset(new Slider("mid_slider"));
-    addAndMakeVisible(m_freq_slider.get());
-    m_freq_slider->setRange(500, 4000, 10);
-    m_freq_slider->setValue(1000.f);
-    m_freq_slider->setSliderStyle(Slider::LinearVertical);
-    m_freq_slider->setTextBoxStyle(Slider::TextBoxLeft, false, 80, 20);
-    m_freq_slider->setColour(Slider::backgroundColourId, Colours::black);
-    m_freq_slider->setColour(Slider::trackColourId, Colours::black);
-    m_freq_slider->setColour(Slider::rotarySliderFillColourId, Colours::black);
-    m_freq_slider->setColour(Slider::rotarySliderOutlineColourId, Colours::black);
-    m_freq_slider->setColour(Slider::textBoxTextColourId, Colours::white);
-    m_freq_slider->setColour(Slider::textBoxBackgroundColourId, Colours::black);
-    m_freq_slider->setColour(Slider::textBoxOutlineColourId, Colours::grey);
-    m_freq_slider->addListener(this);
+    m_freq_slider.reset (new Slider ("mid_slider"));
+    addAndMakeVisible (m_freq_slider.get());
+    m_freq_slider->setRange (500, 4000, 10);
+    m_freq_slider->setSliderStyle (Slider::LinearVertical);
+    m_freq_slider->setTextBoxStyle (Slider::TextBoxLeft, false, 80, 20);
+    m_freq_slider->setColour (Slider::backgroundColourId, Colours::black);
+    m_freq_slider->setColour (Slider::trackColourId, Colours::black);
+    m_freq_slider->setColour (Slider::rotarySliderFillColourId, Colours::black);
+    m_freq_slider->setColour (Slider::rotarySliderOutlineColourId, Colours::black);
+    m_freq_slider->setColour (Slider::textBoxTextColourId, Colours::white);
+    m_freq_slider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    m_freq_slider->setColour (Slider::textBoxOutlineColourId, Colours::grey);
+    m_freq_slider->addListener (this);
 
-    m_freq_slider->setBounds(220, 55, 78, 190);
+    m_freq_slider->setBounds (220, 55, 78, 190);
 
-    h_freq_slider.reset(new Slider("high slider"));
-    addAndMakeVisible(h_freq_slider.get());
-    h_freq_slider->setRange(4000, 15000, 100);
-    h_freq_slider->setValue(9000.f);
-    h_freq_slider->setSliderStyle(Slider::LinearVertical);
-    h_freq_slider->setTextBoxStyle(Slider::TextBoxLeft, false, 80, 20);
-    h_freq_slider->setColour(Slider::backgroundColourId, Colours::black);
-    h_freq_slider->setColour(Slider::trackColourId, Colours::black);
-    h_freq_slider->setColour(Slider::rotarySliderOutlineColourId, Colours::black);
-    h_freq_slider->setColour(Slider::textBoxTextColourId, Colours::white);
-    h_freq_slider->setColour(Slider::textBoxBackgroundColourId, Colours::black);
-    h_freq_slider->setColour(Slider::textBoxOutlineColourId, Colour(0xff999999));
-    h_freq_slider->addListener(this);
+    h_freq_slider.reset (new Slider ("high slider"));
+    addAndMakeVisible (h_freq_slider.get());
+    h_freq_slider->setRange (4000, 15000, 100);
+    h_freq_slider->setSliderStyle (Slider::LinearVertical);
+    h_freq_slider->setTextBoxStyle (Slider::TextBoxLeft, false, 80, 20);
+    h_freq_slider->setColour (Slider::backgroundColourId, Colours::black);
+    h_freq_slider->setColour (Slider::trackColourId, Colours::black);
+    h_freq_slider->setColour (Slider::rotarySliderOutlineColourId, Colours::black);
+    h_freq_slider->setColour (Slider::textBoxTextColourId, Colours::white);
+    h_freq_slider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    h_freq_slider->setColour (Slider::textBoxOutlineColourId, Colour (0xff999999));
+    h_freq_slider->addListener (this);
 
-    h_freq_slider->setBounds(420, 55, 78, 250);
+    h_freq_slider->setBounds (420, 55, 78, 250);
 
-    l_gain_slider.reset(new Slider("low_slider"));
-    addAndMakeVisible(l_gain_slider.get());
-    l_gain_slider->setRange(-15, 15, 1);
-    l_gain_slider->setSliderStyle(Slider::LinearVertical);
-    l_gain_slider->setTextBoxStyle(Slider::TextBoxRight, false, 80, 20);
-    l_gain_slider->setColour(Slider::backgroundColourId, Colours::black);
-    l_gain_slider->setColour(Slider::trackColourId, Colours::black);
-    l_gain_slider->setColour(Slider::rotarySliderFillColourId, Colours::black);
-    l_gain_slider->setColour(Slider::rotarySliderOutlineColourId, Colours::black);
-    l_gain_slider->setColour(Slider::textBoxTextColourId, Colours::white);
-    l_gain_slider->setColour(Slider::textBoxBackgroundColourId, Colours::black);
-    l_gain_slider->setColour(Slider::textBoxOutlineColourId, Colour(0xff707070));
-    l_gain_slider->addListener(this);
+    l_gain_slider.reset (new Slider ("low_slider"));
+    addAndMakeVisible (l_gain_slider.get());
+    l_gain_slider->setRange (-15, 15, 1);
+    l_gain_slider->setSliderStyle (Slider::LinearVertical);
+    l_gain_slider->setTextBoxStyle (Slider::TextBoxRight, false, 80, 20);
+    l_gain_slider->setColour (Slider::backgroundColourId, Colours::black);
+    l_gain_slider->setColour (Slider::trackColourId, Colours::black);
+    l_gain_slider->setColour (Slider::rotarySliderFillColourId, Colours::black);
+    l_gain_slider->setColour (Slider::rotarySliderOutlineColourId, Colours::black);
+    l_gain_slider->setColour (Slider::textBoxTextColourId, Colours::white);
+    l_gain_slider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    l_gain_slider->setColour (Slider::textBoxOutlineColourId, Colour (0xff707070));
+    l_gain_slider->addListener (this);
 
-    l_gain_slider->setBounds(120, 55, 78, 250);
+    l_gain_slider->setBounds (120, 55, 78, 250);
 
-    m_gain_slider.reset(new Slider("mid_slider"));
-    addAndMakeVisible(m_gain_slider.get());
-    m_gain_slider->setRange(-15, 15, 1);
-    m_gain_slider->setSliderStyle(Slider::LinearVertical);
-    m_gain_slider->setTextBoxStyle(Slider::TextBoxRight, false, 80, 20);
-    m_gain_slider->setColour(Slider::backgroundColourId, Colours::black);
-    m_gain_slider->setColour(Slider::trackColourId, Colours::black);
-    m_gain_slider->setColour(Slider::rotarySliderFillColourId, Colours::black);
-    m_gain_slider->setColour(Slider::rotarySliderOutlineColourId, Colours::black);
-    m_gain_slider->setColour(Slider::textBoxTextColourId, Colours::white);
-    m_gain_slider->setColour(Slider::textBoxBackgroundColourId, Colours::black);
-    m_gain_slider->setColour(Slider::textBoxOutlineColourId, Colours::grey);
-    m_gain_slider->addListener(this);
+    m_gain_slider.reset (new Slider ("mid_slider"));
+    addAndMakeVisible (m_gain_slider.get());
+    m_gain_slider->setRange (-15, 15, 1);
+    m_gain_slider->setSliderStyle (Slider::LinearVertical);
+    m_gain_slider->setTextBoxStyle (Slider::TextBoxRight, false, 80, 20);
+    m_gain_slider->setColour (Slider::backgroundColourId, Colours::black);
+    m_gain_slider->setColour (Slider::trackColourId, Colours::black);
+    m_gain_slider->setColour (Slider::rotarySliderFillColourId, Colours::black);
+    m_gain_slider->setColour (Slider::rotarySliderOutlineColourId, Colours::black);
+    m_gain_slider->setColour (Slider::textBoxTextColourId, Colours::white);
+    m_gain_slider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    m_gain_slider->setColour (Slider::textBoxOutlineColourId, Colours::grey);
+    m_gain_slider->addListener (this);
 
-    m_gain_slider->setBounds(310, 55, 78, 190);
+    m_gain_slider->setBounds (310, 55, 62, 190);
 
-    m_band_slider.reset(new Slider("mid_band_slider"));
-    addAndMakeVisible(m_band_slider.get());
-    m_band_slider->setRange(10, 1000, 10);
-    h_freq_slider->setValue(100);
-    m_band_slider->setSliderStyle(Slider::LinearHorizontal);
-    m_band_slider->setTextBoxStyle(Slider::TextBoxBelow, false, 80, 20);
-    m_band_slider->setColour(Slider::backgroundColourId, Colours::black);
-    m_band_slider->setColour(Slider::trackColourId, Colours::black);
-    m_band_slider->setColour(Slider::rotarySliderFillColourId, Colours::black);
-    m_band_slider->setColour(Slider::rotarySliderOutlineColourId, Colours::black);
-    m_band_slider->setColour(Slider::textBoxTextColourId, Colours::white);
-    m_band_slider->setColour(Slider::textBoxBackgroundColourId, Colours::black);
-    m_band_slider->setColour(Slider::textBoxOutlineColourId, Colours::grey);
-    m_band_slider->addListener(this);
+    h_gain_slider.reset (new Slider ("high slider"));
+    addAndMakeVisible (h_gain_slider.get());
+    h_gain_slider->setRange (-15, 15, 1);
+    h_gain_slider->setSliderStyle (Slider::LinearVertical);
+    h_gain_slider->setTextBoxStyle (Slider::TextBoxRight, false, 80, 20);
+    h_gain_slider->setColour (Slider::backgroundColourId, Colours::black);
+    h_gain_slider->setColour (Slider::trackColourId, Colours::black);
+    h_gain_slider->setColour (Slider::rotarySliderOutlineColourId, Colours::black);
+    h_gain_slider->setColour (Slider::textBoxTextColourId, Colours::white);
+    h_gain_slider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    h_gain_slider->setColour (Slider::textBoxOutlineColourId, Colour (0xff999999));
+    h_gain_slider->addListener (this);
 
-    m_band_slider->setBounds(246, 242, 114, 48);
+    h_gain_slider->setBounds (510, 55, 78, 250);
 
-    h_gain_slider.reset(new Slider("high slider"));
-    addAndMakeVisible(h_gain_slider.get());
-    h_gain_slider->setRange(-15, 15, 1);
-    h_gain_slider->setSliderStyle(Slider::LinearVertical);
-    h_gain_slider->setTextBoxStyle(Slider::TextBoxRight, false, 80, 20);
-    h_gain_slider->setColour(Slider::backgroundColourId, Colours::black);
-    h_gain_slider->setColour(Slider::trackColourId, Colours::black);
-    h_gain_slider->setColour(Slider::rotarySliderOutlineColourId, Colours::black);
-    h_gain_slider->setColour(Slider::textBoxTextColourId, Colours::white);
-    h_gain_slider->setColour(Slider::textBoxBackgroundColourId, Colours::black);
-    h_gain_slider->setColour(Slider::textBoxOutlineColourId, Colour(0xff999999));
-    h_gain_slider->addListener(this);
+    label4.reset (new Label ("new label",
+                             TRANS("Freq\n")));
+    addAndMakeVisible (label4.get());
+    label4->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Bold"));
+    label4->setJustificationType (Justification::centred);
+    label4->setEditable (false, false, false);
+    label4->setColour (Label::textColourId, Colour (0xb0000000));
+    label4->setColour (TextEditor::textColourId, Colours::black);
+    label4->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    h_gain_slider->setBounds(510, 55, 78, 250);
+    label4->setBounds (60, 306, 56, 24);
 
-    label4.reset(new Label("new label",
-        TRANS("Freq\n")));
-    addAndMakeVisible(label4.get());
-    label4->setFont(Font(15.0f, Font::plain).withTypefaceStyle("Bold"));
-    label4->setJustificationType(Justification::centred);
-    label4->setEditable(false, false, false);
-    label4->setColour(Label::textColourId, Colour(0xb0000000));
-    label4->setColour(TextEditor::textColourId, Colours::black);
-    label4->setColour(TextEditor::backgroundColourId, Colour(0x00000000));
+    label5.reset (new Label ("new label",
+                             TRANS("Gain")));
+    addAndMakeVisible (label5.get());
+    label5->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Bold"));
+    label5->setJustificationType (Justification::centred);
+    label5->setEditable (false, false, false);
+    label5->setColour (Label::textColourId, Colour (0xb0000000));
+    label5->setColour (TextEditor::textColourId, Colours::black);
+    label5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label4->setBounds(60, 306, 56, 24);
+    label5->setBounds (108, 306, 56, 24);
 
-    label5.reset(new Label("new label",
-        TRANS("Gain")));
-    addAndMakeVisible(label5.get());
-    label5->setFont(Font(15.0f, Font::plain).withTypefaceStyle("Bold"));
-    label5->setJustificationType(Justification::centred);
-    label5->setEditable(false, false, false);
-    label5->setColour(Label::textColourId, Colour(0xb0000000));
-    label5->setColour(TextEditor::textColourId, Colours::black);
-    label5->setColour(TextEditor::backgroundColourId, Colour(0x00000000));
+    label6.reset (new Label ("new label",
+                             TRANS("Freq\n")));
+    addAndMakeVisible (label6.get());
+    label6->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Bold"));
+    label6->setJustificationType (Justification::centred);
+    label6->setEditable (false, false, false);
+    label6->setColour (Label::textColourId, Colour (0xb0000000));
+    label6->setColour (TextEditor::textColourId, Colours::black);
+    label6->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label5->setBounds(108, 306, 56, 24);
+    label6->setBounds (256, 306, 56, 24);
 
-    label6.reset(new Label("new label",
-        TRANS("Freq\n")));
-    addAndMakeVisible(label6.get());
-    label6->setFont(Font(15.0f, Font::plain).withTypefaceStyle("Bold"));
-    label6->setJustificationType(Justification::centred);
-    label6->setEditable(false, false, false);
-    label6->setColour(Label::textColourId, Colour(0xb0000000));
-    label6->setColour(TextEditor::textColourId, Colours::black);
-    label6->setColour(TextEditor::backgroundColourId, Colour(0x00000000));
+    label7.reset (new Label ("new label",
+                             TRANS("Gain")));
+    addAndMakeVisible (label7.get());
+    label7->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Bold"));
+    label7->setJustificationType (Justification::centred);
+    label7->setEditable (false, false, false);
+    label7->setColour (Label::textColourId, Colour (0xb0000000));
+    label7->setColour (TextEditor::textColourId, Colours::black);
+    label7->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label6->setBounds(256, 306, 56, 24);
+    label7->setBounds (296, 306, 56, 24);
 
-    label7.reset(new Label("new label",
-        TRANS("Gain")));
-    addAndMakeVisible(label7.get());
-    label7->setFont(Font(15.0f, Font::plain).withTypefaceStyle("Bold"));
-    label7->setJustificationType(Justification::centred);
-    label7->setEditable(false, false, false);
-    label7->setColour(Label::textColourId, Colour(0xb0000000));
-    label7->setColour(TextEditor::textColourId, Colours::black);
-    label7->setColour(TextEditor::backgroundColourId, Colour(0x00000000));
+    label9.reset (new Label ("new label",
+                             TRANS("Freq\n")));
+    addAndMakeVisible (label9.get());
+    label9->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Bold"));
+    label9->setJustificationType (Justification::centred);
+    label9->setEditable (false, false, false);
+    label9->setColour (Label::textColourId, Colour (0xb0000000));
+    label9->setColour (TextEditor::textColourId, Colours::black);
+    label9->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label7->setBounds(296, 306, 56, 24);
+    label9->setBounds (456, 306, 56, 24);
 
-    label9.reset(new Label("new label",
-        TRANS("Freq\n")));
-    addAndMakeVisible(label9.get());
-    label9->setFont(Font(15.0f, Font::plain).withTypefaceStyle("Bold"));
-    label9->setJustificationType(Justification::centred);
-    label9->setEditable(false, false, false);
-    label9->setColour(Label::textColourId, Colour(0xb0000000));
-    label9->setColour(TextEditor::textColourId, Colours::black);
-    label9->setColour(TextEditor::backgroundColourId, Colour(0x00000000));
+    label10.reset (new Label ("new label",
+                              TRANS("Gain")));
+    addAndMakeVisible (label10.get());
+    label10->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Bold"));
+    label10->setJustificationType (Justification::centred);
+    label10->setEditable (false, false, false);
+    label10->setColour (Label::textColourId, Colour (0xb0000000));
+    label10->setColour (TextEditor::textColourId, Colours::black);
+    label10->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label9->setBounds(456, 306, 56, 24);
+    label10->setBounds (498, 306, 56, 24);
 
-    label10.reset(new Label("new label",
-        TRANS("Gain")));
-    addAndMakeVisible(label10.get());
-    label10->setFont(Font(15.0f, Font::plain).withTypefaceStyle("Bold"));
-    label10->setJustificationType(Justification::centred);
-    label10->setEditable(false, false, false);
-    label10->setColour(Label::textColourId, Colour(0xb0000000));
-    label10->setColour(TextEditor::textColourId, Colours::black);
-    label10->setColour(TextEditor::backgroundColourId, Colour(0x00000000));
+    m_gain_slider2.reset (new Slider ("mid__band_slider"));
+    addAndMakeVisible (m_gain_slider2.get());
+    m_gain_slider2->setRange (10, 1000, 10);
+    m_gain_slider2->setSliderStyle (Slider::LinearHorizontal);
+    m_gain_slider2->setTextBoxStyle (Slider::TextBoxBelow, false, 80, 20);
+    m_gain_slider2->setColour (Slider::backgroundColourId, Colours::black);
+    m_gain_slider2->setColour (Slider::trackColourId, Colours::black);
+    m_gain_slider2->setColour (Slider::rotarySliderFillColourId, Colours::black);
+    m_gain_slider2->setColour (Slider::rotarySliderOutlineColourId, Colours::black);
+    m_gain_slider2->setColour (Slider::textBoxTextColourId, Colours::white);
+    m_gain_slider2->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    m_gain_slider2->setColour (Slider::textBoxOutlineColourId, Colours::grey);
+    m_gain_slider2->addListener (this);
 
-    label10->setBounds(498, 306, 56, 24);
+    m_gain_slider2->setBounds (246, 242, 114, 48);
 
-    cachedImage_metal_jpg_1 = ImageCache::getFromMemory(metal_jpg, metal_jpgSize);
-    cachedImage_plate_png_2 = ImageCache::getFromMemory(plate_png, plate_pngSize);
-    cachedImage_plate_png_3 = ImageCache::getFromMemory(plate_png, plate_pngSize);
-    cachedImage_plate_png_4 = ImageCache::getFromMemory(plate_png, plate_pngSize);
-    cachedImage_plate_png_5 = ImageCache::getFromMemory(plate_png, plate_pngSize);
-    cachedImage_plate_png_6 = ImageCache::getFromMemory(plate_png, plate_pngSize);
-    cachedImage_plate_png_7 = ImageCache::getFromMemory(plate_png, plate_pngSize);
+    cachedImage_metal_jpg_1 = ImageCache::getFromMemory (metal_jpg, metal_jpgSize);
+    cachedImage_plate_png_2 = ImageCache::getFromMemory (plate_png, plate_pngSize);
+    cachedImage_plate_png_3 = ImageCache::getFromMemory (plate_png, plate_pngSize);
+    cachedImage_plate_png_4 = ImageCache::getFromMemory (plate_png, plate_pngSize);
+    cachedImage_plate_png_5 = ImageCache::getFromMemory (plate_png, plate_pngSize);
+    cachedImage_plate_png_6 = ImageCache::getFromMemory (plate_png, plate_pngSize);
+    cachedImage_plate_png_7 = ImageCache::getFromMemory (plate_png, plate_pngSize);
 
-    setSize(600, 400);
+    //[UserPreSize]
+    //[/UserPreSize]
+
+    setSize (600, 400);
+
+
+    //[Constructor] You can add your own custom stuff here..
+    //[/Constructor]
 }
 
-EqualizerAudioProcessorEditor::~EqualizerAudioProcessorEditor()
+Interface::~Interface()
 {
+    //[Destructor_pre]. You can add your own custom destruction code here..
+    //[/Destructor_pre]
+
     label = nullptr;
     label2 = nullptr;
     label3 = nullptr;
@@ -261,154 +282,309 @@ EqualizerAudioProcessorEditor::~EqualizerAudioProcessorEditor()
     label7 = nullptr;
     label9 = nullptr;
     label10 = nullptr;
+    m_gain_slider2 = nullptr;
+
+
+    //[Destructor]. You can add your own custom destruction code here..
+    //[/Destructor]
 }
 
 //==============================================================================
-void EqualizerAudioProcessorEditor::paint (Graphics& g)
+void Interface::paint (Graphics& g)
 {
+    //[UserPrePaint] Add your own custom painting code here..
+    //[/UserPrePaint]
 
-    g.fillAll(Colour(0xff323e44));
+    g.fillAll (Colour (0xff323e44));
 
     {
         int x = 0, y = 0, width = 600, height = 400;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
-        g.setColour(Colours::black);
-        g.drawImage(cachedImage_metal_jpg_1,
-            x, y, width, height,
-            0, 0, cachedImage_metal_jpg_1.getWidth(), cachedImage_metal_jpg_1.getHeight());
+        g.setColour (Colours::black);
+        g.drawImage (cachedImage_metal_jpg_1,
+                     x, y, width, height,
+                     0, 0, cachedImage_metal_jpg_1.getWidth(), cachedImage_metal_jpg_1.getHeight());
     }
 
     {
         int x = 0, y = 0, width = 600, height = 50;
-        String text(TRANS("EQUALIZER"));
+        String text (TRANS("EQUALIZER"));
         Colour fillColour = Colours::black;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
-        g.setColour(fillColour);
-        g.setFont(Font("PMingLiU-ExtB", 35.9f, Font::bold));
-        g.drawText(text, x, y, width, height,
-            Justification::centred, true);
+        g.setColour (fillColour);
+        g.setFont (Font ("PMingLiU-ExtB", 35.9f, Font::bold));
+        g.drawText (text, x, y, width, height,
+                    Justification::centred, true);
     }
 
     {
         int x = 38, y = 336, width = 164, height = 59;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
-        g.setColour(Colours::black);
-        g.drawImageWithin(cachedImage_plate_png_2,
-            x, y, width, height,
-            RectanglePlacement::centred,
-            false);
+        g.setColour (Colours::black);
+        g.drawImageWithin (cachedImage_plate_png_2,
+                           x, y, width, height,
+                           RectanglePlacement::centred,
+                           false);
     }
 
     {
         int x = 228, y = 336, width = 164, height = 59;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
-        g.setColour(Colours::black);
-        g.drawImageWithin(cachedImage_plate_png_3,
-            x, y, width, height,
-            RectanglePlacement::centred,
-            false);
+        g.setColour (Colours::black);
+        g.drawImageWithin (cachedImage_plate_png_3,
+                           x, y, width, height,
+                           RectanglePlacement::centred,
+                           false);
     }
 
     {
         int x = 416, y = 336, width = 164, height = 59;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
-        g.setColour(Colours::black);
-        g.drawImageWithin(cachedImage_plate_png_4,
-            x, y, width, height,
-            RectanglePlacement::centred,
-            false);
+        g.setColour (Colours::black);
+        g.drawImageWithin (cachedImage_plate_png_4,
+                           x, y, width, height,
+                           RectanglePlacement::centred,
+                           false);
     }
 
     {
         int x = 58, y = 302, width = 110, height = 32;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
-        g.setColour(Colours::black);
-        g.drawImageWithin(cachedImage_plate_png_5,
-            x, y, width, height,
-            RectanglePlacement::centred,
-            false);
+        g.setColour (Colours::black);
+        g.drawImageWithin (cachedImage_plate_png_5,
+                           x, y, width, height,
+                           RectanglePlacement::centred,
+                           false);
     }
 
     {
         int x = 248, y = 302, width = 110, height = 32;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
-        g.setColour(Colours::black);
-        g.drawImageWithin(cachedImage_plate_png_6,
-            x, y, width, height,
-            RectanglePlacement::centred,
-            false);
+        g.setColour (Colours::black);
+        g.drawImageWithin (cachedImage_plate_png_6,
+                           x, y, width, height,
+                           RectanglePlacement::centred,
+                           false);
     }
 
     {
         int x = 448, y = 302, width = 110, height = 32;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
-        g.setColour(Colours::black);
-        g.drawImageWithin(cachedImage_plate_png_7,
-            x, y, width, height,
-            RectanglePlacement::centred,
-            false);
+        g.setColour (Colours::black);
+        g.drawImageWithin (cachedImage_plate_png_7,
+                           x, y, width, height,
+                           RectanglePlacement::centred,
+                           false);
     }
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
 }
 
-void EqualizerAudioProcessorEditor::resized()
+void Interface::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
-    label->setBounds(40, getHeight() - 46, 150, 24);
-    label2->setBounds(234, getHeight() - 48, 150, 24);
-    label3->setBounds(426, getHeight() - 48, 150, 24);
+    //[UserPreResize] Add your own custom resize code here..
+    //[/UserPreResize]
 
-	//==============================================================================
+    label->setBounds (40, getHeight() - 6, 150, 24);
+    label2->setBounds (234, getHeight() - 8, 150, 24);
+    label3->setBounds (426, getHeight() - 8, 150, 24);
+    //[UserResized] Add your own custom resize handling here..
+    //[/UserResized]
 }
 
-void EqualizerAudioProcessorEditor::sliderValueChanged(Slider* sliderThatWasMoved)
+void Interface::sliderValueChanged (Slider* sliderThatWasMoved)
 {
     //[UsersliderValueChanged_Pre]
     //[/UsersliderValueChanged_Pre]
 
     if (sliderThatWasMoved == l_freq_slider.get())
     {
-        *processor.lowParam = (float)sliderThatWasMoved->getValue();
+        //[UserSliderCode_l_freq_slider] -- add your slider handling code here..
+        //[/UserSliderCode_l_freq_slider]
     }
     else if (sliderThatWasMoved == m_freq_slider.get())
     {
-        *processor.peakParam = (float)sliderThatWasMoved->getValue();
+        //[UserSliderCode_m_freq_slider] -- add your slider handling code here..
+        //[/UserSliderCode_m_freq_slider]
     }
     else if (sliderThatWasMoved == h_freq_slider.get())
     {
-        *processor.topParam = (float)sliderThatWasMoved->getValue();
+        //[UserSliderCode_h_freq_slider] -- add your slider handling code here..
+        //[/UserSliderCode_h_freq_slider]
     }
     else if (sliderThatWasMoved == l_gain_slider.get())
     {
-        *processor.gainlowParam = (float)sliderThatWasMoved->getValue();
+        //[UserSliderCode_l_gain_slider] -- add your slider handling code here..
+        //[/UserSliderCode_l_gain_slider]
     }
     else if (sliderThatWasMoved == m_gain_slider.get())
     {
-        *processor.gainpeakParam = (float)sliderThatWasMoved->getValue();
+        //[UserSliderCode_m_gain_slider] -- add your slider handling code here..
+        //[/UserSliderCode_m_gain_slider]
     }
     else if (sliderThatWasMoved == h_gain_slider.get())
     {
-        *processor.gaintopParam = (float)sliderThatWasMoved->getValue();
+        //[UserSliderCode_h_gain_slider] -- add your slider handling code here..
+        //[/UserSliderCode_h_gain_slider]
     }
-    else if (sliderThatWasMoved == m_band_slider.get())
+    else if (sliderThatWasMoved == m_gain_slider2.get())
     {
-        *processor.bandpeakParam = (float)sliderThatWasMoved->getValue();
+        //[UserSliderCode_m_gain_slider2] -- add your slider handling code here..
+        //[/UserSliderCode_m_gain_slider2]
     }
 
     //[UsersliderValueChanged_Post]
     //[/UsersliderValueChanged_Post]
 }
+
+
+
+//[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+//[/MiscUserCode]
+
+
+//==============================================================================
+#if 0
+/*  -- Projucer information section --
+
+    This is where the Projucer stores the metadata that describe this GUI layout, so
+    make changes in here at your peril!
+
+BEGIN_JUCER_METADATA
+
+<JUCER_COMPONENT documentType="Component" className="Interface" componentName=""
+                 parentClasses="public Component" constructorParams="" variableInitialisers=""
+                 snapPixels="2" snapActive="1" snapShown="1" overlayOpacity="0.33"
+                 fixedSize="1" initialWidth="600" initialHeight="400">
+  <BACKGROUND backgroundColour="ff323e44">
+    <IMAGE pos="0 0 600 400" resource="metal_jpg" opacity="1.0" mode="0"/>
+    <TEXT pos="0 0 600 50" fill="solid: ff000000" hasStroke="0" text="EQUALIZER"
+          fontname="PMingLiU-ExtB" fontsize="35.89999999999999857891" kerning="0.0"
+          bold="1" italic="0" justification="36" typefaceStyle="Bold"/>
+    <IMAGE pos="38 336 164 59" resource="plate_png" opacity="1.0" mode="1"/>
+    <IMAGE pos="228 336 164 59" resource="plate_png" opacity="1.0" mode="1"/>
+    <IMAGE pos="416 336 164 59" resource="plate_png" opacity="1.0" mode="1"/>
+    <IMAGE pos="58 302 110 32" resource="plate_png" opacity="1.0" mode="1"/>
+    <IMAGE pos="248 302 110 32" resource="plate_png" opacity="1.0" mode="1"/>
+    <IMAGE pos="448 302 110 32" resource="plate_png" opacity="1.0" mode="1"/>
+  </BACKGROUND>
+  <LABEL name="low_label" id="8a2e84a4e600c374" memberName="label" virtualName=""
+         explicitFocusOrder="0" pos="40 6R 150 24" textCol="b0000000"
+         edTextCol="ff000000" edBkgCol="0" labelText="LOW&#10;" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="20.0" kerning="0.0" bold="1" italic="0" justification="36"
+         typefaceStyle="Bold"/>
+  <LABEL name="mid_label" id="315493bcb522c744" memberName="label2" virtualName=""
+         explicitFocusOrder="0" pos="234 8R 150 24" textCol="b0000000"
+         edTextCol="ff000000" edBkgCol="0" labelText="MID&#10;" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="20.0" kerning="0.0" bold="1" italic="0" justification="36"
+         typefaceStyle="Bold"/>
+  <LABEL name="high_label" id="58b749b21fa52dc8" memberName="label3" virtualName=""
+         explicitFocusOrder="0" pos="426 8R 150 24" textCol="b0000000"
+         edTextCol="ff000000" edBkgCol="0" labelText="HIGH" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="20.0" kerning="0.0" bold="1" italic="0" justification="36"
+         typefaceStyle="Bold"/>
+  <SLIDER name="low_slider" id="b14ec52004527bbd" memberName="l_freq_slider"
+          virtualName="" explicitFocusOrder="0" pos="30 55 78 250" bkgcol="ff000000"
+          trackcol="ff000000" rotarysliderfill="ff000000" rotaryslideroutline="ff000000"
+          textboxtext="ffffffff" textboxbkgd="ff000000" textboxoutline="ff707070"
+          min="10.0" max="200.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxLeft"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
+  <SLIDER name="mid_slider" id="1d4c7249a6a2ad4c" memberName="m_freq_slider"
+          virtualName="" explicitFocusOrder="0" pos="220 55 78 190" bkgcol="ff000000"
+          trackcol="ff000000" rotarysliderfill="ff000000" rotaryslideroutline="ff000000"
+          textboxtext="ffffffff" textboxbkgd="ff000000" textboxoutline="ff808080"
+          min="500.0" max="4000.0" int="10.0" style="LinearVertical" textBoxPos="TextBoxLeft"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
+  <SLIDER name="high slider" id="52ca6aa01813e3f" memberName="h_freq_slider"
+          virtualName="" explicitFocusOrder="0" pos="420 55 78 250" bkgcol="ff000000"
+          trackcol="ff000000" rotaryslideroutline="ff000000" textboxtext="ffffffff"
+          textboxbkgd="ff000000" textboxoutline="ff999999" min="4000.0"
+          max="15000.0" int="100.0" style="LinearVertical" textBoxPos="TextBoxLeft"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
+  <SLIDER name="low_slider" id="72ecc41e70098f79" memberName="l_gain_slider"
+          virtualName="" explicitFocusOrder="0" pos="120 55 78 250" bkgcol="ff000000"
+          trackcol="ff000000" rotarysliderfill="ff000000" rotaryslideroutline="ff000000"
+          textboxtext="ffffffff" textboxbkgd="ff000000" textboxoutline="ff707070"
+          min="-15.0" max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxRight"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
+  <SLIDER name="mid_slider" id="38a4ae8031ff5662" memberName="m_gain_slider"
+          virtualName="" explicitFocusOrder="0" pos="310 55 62 190" bkgcol="ff000000"
+          trackcol="ff000000" rotarysliderfill="ff000000" rotaryslideroutline="ff000000"
+          textboxtext="ffffffff" textboxbkgd="ff000000" textboxoutline="ff808080"
+          min="-15.0" max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxRight"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
+  <SLIDER name="high slider" id="241c3282e05d3567" memberName="h_gain_slider"
+          virtualName="" explicitFocusOrder="0" pos="510 55 78 250" bkgcol="ff000000"
+          trackcol="ff000000" rotaryslideroutline="ff000000" textboxtext="ffffffff"
+          textboxbkgd="ff000000" textboxoutline="ff999999" min="-15.0"
+          max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxRight"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
+  <LABEL name="new label" id="64b65947d32d39ef" memberName="label4" virtualName=""
+         explicitFocusOrder="0" pos="60 306 56 24" textCol="b0000000"
+         edTextCol="ff000000" edBkgCol="0" labelText="Freq&#10;" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15.0" kerning="0.0" bold="1" italic="0" justification="36"
+         typefaceStyle="Bold"/>
+  <LABEL name="new label" id="fbd4f47a556e22fe" memberName="label5" virtualName=""
+         explicitFocusOrder="0" pos="108 306 56 24" textCol="b0000000"
+         edTextCol="ff000000" edBkgCol="0" labelText="Gain" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15.0" kerning="0.0" bold="1" italic="0" justification="36"
+         typefaceStyle="Bold"/>
+  <LABEL name="new label" id="c56746bbac928097" memberName="label6" virtualName=""
+         explicitFocusOrder="0" pos="256 306 56 24" textCol="b0000000"
+         edTextCol="ff000000" edBkgCol="0" labelText="Freq&#10;" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15.0" kerning="0.0" bold="1" italic="0" justification="36"
+         typefaceStyle="Bold"/>
+  <LABEL name="new label" id="5815d944763444df" memberName="label7" virtualName=""
+         explicitFocusOrder="0" pos="296 306 56 24" textCol="b0000000"
+         edTextCol="ff000000" edBkgCol="0" labelText="Gain" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15.0" kerning="0.0" bold="1" italic="0" justification="36"
+         typefaceStyle="Bold"/>
+  <LABEL name="new label" id="6835246d8938bf52" memberName="label9" virtualName=""
+         explicitFocusOrder="0" pos="456 306 56 24" textCol="b0000000"
+         edTextCol="ff000000" edBkgCol="0" labelText="Freq&#10;" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15.0" kerning="0.0" bold="1" italic="0" justification="36"
+         typefaceStyle="Bold"/>
+  <LABEL name="new label" id="913f7f4ea47dab8c" memberName="label10" virtualName=""
+         explicitFocusOrder="0" pos="498 306 56 24" textCol="b0000000"
+         edTextCol="ff000000" edBkgCol="0" labelText="Gain" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15.0" kerning="0.0" bold="1" italic="0" justification="36"
+         typefaceStyle="Bold"/>
+  <SLIDER name="mid__band_slider" id="2e6cdbde2af08171" memberName="m_gain_slider2"
+          virtualName="" explicitFocusOrder="0" pos="246 242 114 48" bkgcol="ff000000"
+          trackcol="ff000000" rotarysliderfill="ff000000" rotaryslideroutline="ff000000"
+          textboxtext="ffffffff" textboxbkgd="ff000000" textboxoutline="ff808080"
+          min="10.0" max="1000.0" int="10.0" style="LinearHorizontal" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
+</JUCER_COMPONENT>
+
+END_JUCER_METADATA
+*/
+#endif
 
 //==============================================================================
 // Binary resources - be careful not to edit any of these sections!
@@ -4834,10 +5010,10 @@ static const unsigned char resource_Interface_metal_jpg[] = { 255,216,255,224,0,
 242,160,12,9,117,253,11,66,144,219,181,211,121,155,246,149,35,231,108,244,252,13,58,59,84,51,201,36,145,48,89,81,20,44,140,65,64,164,156,15,166,107,63,198,159,242,19,179,255,0,174,246,223,201,171,160,
 214,127,214,175,251,244,1,90,105,146,25,19,48,177,146,38,12,133,64,59,135,63,173,69,13,150,143,168,180,147,223,91,220,155,167,232,229,247,108,231,56,199,69,56,199,74,133,127,228,47,15,253,115,111,229,
 90,22,255,0,235,95,254,186,55,242,160,6,105,218,181,204,50,173,156,22,87,54,203,17,56,249,72,18,40,254,45,195,131,78,188,107,139,169,17,166,148,174,100,3,99,103,105,28,214,166,165,247,237,63,220,111,228,
-43,59,80,233,7,225,64,31,255,217,0,0 };
+43,59,80,233,7,225,64,31,255,217,0,0};
 
-const char* EqualizerAudioProcessorEditor::metal_jpg = (const char*)resource_Interface_metal_jpg;
-const int EqualizerAudioProcessorEditor::metal_jpgSize = 250677;
+const char* Interface::metal_jpg = (const char*) resource_Interface_metal_jpg;
+const int Interface::metal_jpgSize = 250677;
 
 // JUCER_RESOURCE: plate_png, 508238, "plate.png"
 static const unsigned char resource_Interface_plate_png[] = { 137,80,78,71,13,10,26,10,0,0,0,13,73,72,68,82,0,0,3,194,0,0,1,47,8,6,0,0,0,142,174,120,216,0,0,0,6,98,75,71,68,0,255,0,255,0,255,160,189,167,
@@ -13889,10 +14065,10 @@ static const unsigned char resource_Interface_plate_png[] = { 137,80,78,71,13,10
 182,213,158,103,150,64,55,76,230,142,79,195,7,69,83,24,67,47,65,156,0,217,92,14,170,166,161,88,42,33,8,66,184,158,135,124,62,47,188,132,168,230,140,41,161,68,55,144,68,49,209,193,3,191,195,248,28,16,103,
 244,42,86,2,7,139,4,213,91,81,186,122,122,222,31,54,154,77,228,242,121,108,217,186,21,154,78,126,72,142,235,118,201,243,54,147,82,14,234,35,98,114,69,233,172,59,141,168,241,113,148,32,142,104,63,226,249,
 244,51,51,51,24,25,25,197,240,112,21,245,245,117,152,134,129,239,190,39,106,244,235,235,245,245,250,122,125,189,190,94,95,175,175,215,215,235,235,245,245,250,122,125,189,190,94,95,175,175,215,215,235,
-235,245,245,250,122,125,189,190,94,95,175,175,215,215,235,235,245,245,250,122,125,189,190,254,127,189,254,47,124,171,122,14,22,25,240,63,0,0,0,0,73,69,78,68,174,66,96,130,0,0 };
+235,245,245,250,122,125,189,190,94,95,175,175,215,215,235,235,245,245,250,122,125,189,190,254,127,189,254,47,124,171,122,14,22,25,240,63,0,0,0,0,73,69,78,68,174,66,96,130,0,0};
 
-const char* EqualizerAudioProcessorEditor::plate_png = (const char*)resource_Interface_plate_png;
-const int EqualizerAudioProcessorEditor::plate_pngSize = 508238;
+const char* Interface::plate_png = (const char*) resource_Interface_plate_png;
+const int Interface::plate_pngSize = 508238;
 
 
 //[EndFile] You can add extra defines here...

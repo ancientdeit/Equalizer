@@ -5,7 +5,7 @@
               bundleIdentifier="com.yourcompany.Equalizer" includeBinaryInAppConfig="1"
               cppLanguageStandard="11" buildVST="0" buildVST3="1" buildAU="1"
               buildAUv3="0" buildRTAS="0" buildAAX="0" buildStandalone="1"
-              enableIAA="0" pluginName="Equalizer" pluginDesc="Equalizer" pluginManufacturer="yourcompany"
+              enableIAA="0" pluginName="Equalizer" pluginDesc="Equalizer" pluginManufacturer="yourcompany2"
               pluginManufacturerCode="Manu" pluginCode="V5c7" pluginChannelConfigs=""
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="EqualizerAU"
@@ -13,6 +13,8 @@
               pluginAAXCategory="2" jucerVersion="5.4.1" pluginFormats="buildAU,buildStandalone,buildVST3">
   <MAINGROUP id="gfMKvF" name="Equalizer">
     <GROUP id="{16BF54EF-1868-55D8-C534-A9F68CED0629}" name="Source">
+      <FILE id="gQQCvG" name="Interface.cpp" compile="1" resource="0" file="Source/Interface.cpp"/>
+      <FILE id="gxmSQB" name="Interface.h" compile="0" resource="0" file="Source/Interface.h"/>
       <FILE id="XA24Tl" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="AgnLBR" name="PluginProcessor.h" compile="0" resource="0"
@@ -20,6 +22,8 @@
       <FILE id="OrOgs7" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="ZmuTNL" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="f7Uz93" name="LookFeel.cpp" compile="1" resource="0" file="Source/LookFeel.cpp"/>
+      <FILE id="stu3CU" name="LookFeel.h" compile="0" resource="0" file="Source/LookFeel.h"/>
       <FILE id="PRJiMG" name="EQ.h" compile="0" resource="0" file="Source/EQ.h"/>
       <FILE id="nQY9bq" name="LowPassFilter.h" compile="0" resource="0" file="Source/LowPassFilter.h"/>
     </GROUP>
