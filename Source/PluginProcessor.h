@@ -15,6 +15,8 @@
 #include "EQ.h"
 #include<string>
 
+#include "SpectrumAnalizer.h"
+
 //==============================================================================
 /**
 */
@@ -66,6 +68,10 @@ public:
 	AudioParameterFloat* peakParam;
 	AudioParameterFloat* bandpeakParam;
 	AudioParameterFloat* gainpeakParam;
+
+    float* dirac;
+
+    SpectrumAnalizer analizer;
 
 private:
 	EQ *basseq;

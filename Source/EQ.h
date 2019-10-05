@@ -52,9 +52,9 @@ public:
 private:
 	float b0, b1, b2, a1, a2;	//coefficient
 	float V0, K, Q;
-	float xh[2] = { 0.f, 0.f };
-	float xh1[2] = { 0.f, 0.f };
-	float xh2[2] = { 0.f, 0.f };
+	float xh[3] = { 0.f, 0.f };
+	float xh1[3] = { 0.f, 0.f };
+	float xh2[3] = { 0.f, 0.f };
 };
 
 inline void EQ::CComp()

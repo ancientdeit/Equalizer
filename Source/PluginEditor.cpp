@@ -16,7 +16,7 @@ EqualizerAudioProcessorEditor::EqualizerAudioProcessorEditor (EqualizerAudioProc
     : AudioProcessorEditor (&p), processor (p)
 {
     setLookAndFeel(&otherLookAndFeel);
-
+    
     label.reset(new Label("low_label",
         TRANS("LOW\n")));
     addAndMakeVisible(label.get());
@@ -233,6 +233,13 @@ EqualizerAudioProcessorEditor::EqualizerAudioProcessorEditor (EqualizerAudioProc
 
     label10->setBounds(498, 306, 56, 24);
 
+    spectrum_button.reset(new TextButton("spectrum_button"));
+    addAndMakeVisible(spectrum_button.get());
+    spectrum_button->setButtonText(TRANS("Spectrum"));
+    spectrum_button->addListener(this);
+
+    spectrum_button->setBounds(434, 16, 150, 24);
+
     cachedImage_metal_jpg_1 = ImageCache::getFromMemory(metal_jpg, metal_jpgSize);
     cachedImage_plate_png_2 = ImageCache::getFromMemory(plate_png, plate_pngSize);
     cachedImage_plate_png_3 = ImageCache::getFromMemory(plate_png, plate_pngSize);
@@ -409,6 +416,21 @@ void EqualizerAudioProcessorEditor::sliderValueChanged(Slider* sliderThatWasMove
     //[UsersliderValueChanged_Post]
     //[/UsersliderValueChanged_Post]
 }
+
+void EqualizerAudioProcessorEditor::buttonClicked(Button* buttonThatWasClicked)
+{
+    //[UserbuttonClicked_Pre]
+    //[/UserbuttonClicked_Pre]
+
+    if (buttonThatWasClicked == spectrum_button.get())
+    {
+        addAndMakeVisible(processor.analizer);
+    }
+
+    //[UserbuttonClicked_Post]
+    //[/UserbuttonClicked_Post]
+}
+
 
 //==============================================================================
 // Binary resources - be careful not to edit any of these sections!

@@ -34,7 +34,8 @@
                                                                     //[/Comments]
 */
 class Interface  : public Component,
-                   public Slider::Listener
+                   public Slider::Listener,
+                   public Button::Listener
 {
 public:
     //==============================================================================
@@ -48,6 +49,7 @@ public:
     void paint (Graphics& g) override;
     void resized() override;
     void sliderValueChanged (Slider* sliderThatWasMoved) override;
+    void buttonClicked (Button* buttonThatWasClicked) override;
 
     // Binary resources:
     static const char* metal_jpg;
@@ -77,6 +79,7 @@ private:
     std::unique_ptr<Label> label9;
     std::unique_ptr<Label> label10;
     std::unique_ptr<Slider> m_gain_slider2;
+    std::unique_ptr<TextButton> spectrum_button;
     Image cachedImage_metal_jpg_1;
     Image cachedImage_plate_png_2;
     Image cachedImage_plate_png_3;

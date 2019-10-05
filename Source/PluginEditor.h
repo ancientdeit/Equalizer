@@ -56,7 +56,7 @@ struct ParameterSlider : public Slider,
 //==============================================================================
 /**
 */
-class EqualizerAudioProcessorEditor  : public AudioProcessorEditor, public Slider::Listener
+class EqualizerAudioProcessorEditor  : public AudioProcessorEditor, public Slider::Listener, public Button::Listener
 {
 public:
     EqualizerAudioProcessorEditor (EqualizerAudioProcessor&);
@@ -67,6 +67,7 @@ public:
     void resized() override;
 
     void sliderValueChanged(Slider* sliderThatWasMoved) override;
+    void buttonClicked(Button* buttonThatWasClicked) override;
 
     // Binary resources:
     static const char* metal_jpg;
@@ -104,6 +105,7 @@ private:
     Image cachedImage_plate_png_5;
     Image cachedImage_plate_png_6;
     Image cachedImage_plate_png_7;
+    std::unique_ptr<TextButton> spectrum_button;
 
     OtherLookAndFeel otherLookAndFeel;
 

@@ -3,14 +3,14 @@
 <JUCERPROJECT id="v5c76i" name="Equalizer" displaySplashScreen="1" reportAppUsage="1"
               splashScreenColour="Dark" projectType="audioplug" version="1.0.0"
               bundleIdentifier="com.yourcompany.Equalizer" includeBinaryInAppConfig="1"
-              cppLanguageStandard="11" buildVST="0" buildVST3="1" buildAU="1"
-              buildAUv3="0" buildRTAS="0" buildAAX="0" buildStandalone="1"
-              enableIAA="0" pluginName="Equalizer" pluginDesc="Equalizer" pluginManufacturer="yourcompany2"
+              pluginName="Equalizer" pluginDesc="Equalizer" pluginManufacturer="yourcompany2"
               pluginManufacturerCode="Manu" pluginCode="V5c7" pluginChannelConfigs=""
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="EqualizerAU"
               pluginRTASCategory="" aaxIdentifier="com.yourcompany.Equalizer"
-              pluginAAXCategory="2" jucerVersion="5.4.1" pluginFormats="buildAU,buildStandalone,buildVST3">
+              pluginAAXCategory="2" jucerVersion="5.4.1" pluginFormats="buildStandalone,buildVST3"
+              buildVST="0" buildVST3="1" buildAU="0" buildAUv3="0" buildRTAS="0"
+              buildAAX="0" buildStandalone="1" enableIAA="0">
   <MAINGROUP id="gfMKvF" name="Equalizer">
     <GROUP id="{16BF54EF-1868-55D8-C534-A9F68CED0629}" name="Source">
       <FILE id="gQQCvG" name="Interface.cpp" compile="1" resource="0" file="Source/Interface.cpp"/>
@@ -27,6 +27,10 @@
       <FILE id="PRJiMG" name="EQ.h" compile="0" resource="0" file="Source/EQ.h"/>
       <FILE id="nQY9bq" name="LowPassFilter.h" compile="0" resource="0" file="Source/LowPassFilter.h"/>
     </GROUP>
+    <FILE id="yl6Icb" name="SpectrumAnalizer.cpp" compile="1" resource="0"
+          file="Source/SpectrumAnalizer.cpp"/>
+    <FILE id="JNVgIG" name="SpectrumAnalizer.h" compile="0" resource="0"
+          file="Source/SpectrumAnalizer.h"/>
   </MAINGROUP>
   <EXPORTFORMATS>
     <VS2017 targetFolder="Builds/VisualStudio2017">

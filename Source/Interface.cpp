@@ -244,6 +244,13 @@ Interface::Interface ()
 
     m_gain_slider2->setBounds (246, 242, 114, 48);
 
+    spectrum_button.reset (new TextButton ("spectrum_button"));
+    addAndMakeVisible (spectrum_button.get());
+    spectrum_button->setButtonText (TRANS("Spectrum"));
+    spectrum_button->addListener (this);
+
+    spectrum_button->setBounds (434, 16, 150, 24);
+
     cachedImage_metal_jpg_1 = ImageCache::getFromMemory (metal_jpg, metal_jpgSize);
     cachedImage_plate_png_2 = ImageCache::getFromMemory (plate_png, plate_pngSize);
     cachedImage_plate_png_3 = ImageCache::getFromMemory (plate_png, plate_pngSize);
@@ -283,6 +290,7 @@ Interface::~Interface()
     label9 = nullptr;
     label10 = nullptr;
     m_gain_slider2 = nullptr;
+    spectrum_button = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -446,6 +454,21 @@ void Interface::sliderValueChanged (Slider* sliderThatWasMoved)
     //[/UsersliderValueChanged_Post]
 }
 
+void Interface::buttonClicked (Button* buttonThatWasClicked)
+{
+    //[UserbuttonClicked_Pre]
+    //[/UserbuttonClicked_Pre]
+
+    if (buttonThatWasClicked == spectrum_button.get())
+    {
+        //[UserButtonCode_spectrum_button] -- add your button handler code here..
+        //[/UserButtonCode_spectrum_button]
+    }
+
+    //[UserbuttonClicked_Post]
+    //[/UserbuttonClicked_Post]
+}
+
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
@@ -580,6 +603,9 @@ BEGIN_JUCER_METADATA
           min="10.0" max="1000.0" int="10.0" style="LinearHorizontal" textBoxPos="TextBoxBelow"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
+  <TEXTBUTTON name="spectrum_button" id="e7b88ec85ccd40a8" memberName="spectrum_button"
+              virtualName="" explicitFocusOrder="0" pos="434 16 150 24" buttonText="Spectrum"
+              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

@@ -148,6 +148,12 @@ void EqualizerAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 
 	updateParameters(buffer.getNumSamples());
 
+    //Dirac Impulse for spectrum
+    dirac = new float[buffer.getNumSamples()];
+    for (int i = 0; i < buffer.getNumSamples(); i++)
+        dirac[i] = 0.0f;
+    dirac[0] = 1.0f;
+
 	float* leftChannel = buffer.getWritePointer(0);
 	float* rightChannel = buffer.getWritePointer(1);
 
@@ -155,7 +161,12 @@ void EqualizerAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 	{
 		leftChannel[i] = topeq->Tick(peakeq->Tick(basseq->Tick(leftChannel[i], 0), 0), 0);
 		rightChannel[i] = topeq->Tick(peakeq->Tick(basseq->Tick(rightChannel[i], 1), 1), 1);
+
+        dirac[i] = topeq->Tick(peakeq->Tick(basseq->Tick(dirac[i], 2), 2), 2);  //2 channel to avoid distorions
+        analizer.pushNextSampleIntoFifo(dirac[i]);  //send data to analizer
 	}
+
+    delete dirac;
 }
 
 void EqualizerAudioProcessor::updateParameters(int numSamples)
