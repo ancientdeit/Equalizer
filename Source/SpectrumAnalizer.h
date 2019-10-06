@@ -51,97 +51,18 @@
 class SpectrumAnalizer : public Component, private Timer, public Button::Listener
 {
 public:
-    SpectrumAnalizer()
-        : forwardFFT(fftOrder),
-        window(fftSize, dsp::WindowingFunction<float>::hann)
-    {
-        setOpaque(true);
-        startTimerHz(30);
-        setSize(700, 500);
-
-        spectrum_button.reset(new TextButton("spectrum_button"));
-        addAndMakeVisible(spectrum_button.get());
-        spectrum_button->setButtonText(TRANS("Equalizer"));
-        spectrum_button->addListener(this);
-
-        spectrum_button->setBounds(434, 16, 150, 24);
-    }
+    SpectrumAnalizer();
 
     //==============================================================================
-    void paint(Graphics& g) override
-    {
-        g.fillAll(Colours::black);
+    void paint(Graphics& g) override;
 
-        g.setOpacity(1.0f);
-        g.setColour(Colours::white);
-        drawFrame(g);
-    }
+    void timerCallback() override;
 
-    void timerCallback() override
-    {
-        if (nextFFTBlockReady)
-        {
-            drawNextFrameOfSpectrum();
-            nextFFTBlockReady = false;
-            repaint();
-        }
-    }
+    void pushNextSampleIntoFifo(float sample) noexcept;
 
-    void pushNextSampleIntoFifo(float sample) noexcept
-    {
-        // if the fifo contains enough data, set a flag to say
-        // that the next frame should now be rendered..
-        if (fifoIndex == fftSize)
-        {
-            if (!nextFFTBlockReady)
-            {
-                zeromem(fftData, sizeof(fftData));
-                memcpy(fftData, fifo, sizeof(fifo));
-                nextFFTBlockReady = true;
-            }
+    void drawNextFrameOfSpectrum();
 
-            fifoIndex = 0;
-        }
-
-        fifo[fifoIndex++] = sample;
-    }
-
-    void drawNextFrameOfSpectrum()
-    {
-        // first apply a windowing function to our data
-        window.multiplyWithWindowingTable(fftData, fftSize);
-
-        // then render our FFT data..
-        forwardFFT.performFrequencyOnlyForwardTransform(fftData);
-
-        auto mindB = -100.0f;
-        auto maxdB = 0.0f;
-
-        for (int i = 0; i < scopeSize; ++i)
-        {
-            auto skewedProportionX = 1.0f - std::exp(std::log(1.0f - i / (float)scopeSize) * 0.2f);
-            auto fftDataIndex = jlimit(0, fftSize / 2, (int)(skewedProportionX * fftSize / 2));
-            auto level = jmap(jlimit(mindB, maxdB, Decibels::gainToDecibels(fftData[fftDataIndex])
-                - Decibels::gainToDecibels((float)fftSize)),
-                mindB, maxdB, 0.0f, 1.0f);
-
-            scopeData[i] = level;
-        }
-    }
-
-    void drawFrame(Graphics& g)
-    {
-        for (int i = 1; i < scopeSize; ++i)
-        {
-            auto width = getLocalBounds().getWidth();
-            auto height = getLocalBounds().getHeight();
-
-            g.drawLine({ (float)jmap(i - 1, 0, scopeSize - 1, 0, width),
-                                  jmap(scopeData[i - 1], 0.0f, 1.0f, (float)height, 0.0f),
-                          (float)jmap(i,     0, scopeSize - 1, 0, width),
-                                  jmap(scopeData[i],     0.0f, 1.0f, (float)height, 0.0f) });
-        }
-    }
+    void drawFrame(Graphics& g);
 
     enum
     {
@@ -150,10 +71,7 @@ public:
         scopeSize = 2048
     };
 
-    void buttonClicked(Button* buttonThatWasClicked) override
-    {
-        this->setVisible(false);
-    }
+    void buttonClicked(Button* buttonThatWasClicked) override;
 
 private:
     dsp::FFT forwardFFT;

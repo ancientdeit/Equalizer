@@ -132,7 +132,7 @@ EqualizerAudioProcessorEditor::EqualizerAudioProcessorEditor (EqualizerAudioProc
     m_band_slider.reset(new Slider("mid_band_slider"));
     addAndMakeVisible(m_band_slider.get());
     m_band_slider->setRange(10, 1000, 10);
-    h_freq_slider->setValue(100);
+    m_band_slider->setValue(100);
     m_band_slider->setSliderStyle(Slider::LinearHorizontal);
     m_band_slider->setTextBoxStyle(Slider::TextBoxBelow, false, 80, 20);
     m_band_slider->setColour(Slider::backgroundColourId, Colours::black);
@@ -234,7 +234,7 @@ EqualizerAudioProcessorEditor::EqualizerAudioProcessorEditor (EqualizerAudioProc
     label10->setBounds(498, 306, 56, 24);
 
     spectrum_button.reset(new TextButton("spectrum_button"));
-    addAndMakeVisible(spectrum_button.get());
+    //addAndMakeVisible(spectrum_button.get());
     spectrum_button->setButtonText(TRANS("Spectrum"));
     spectrum_button->addListener(this);
 
@@ -273,7 +273,6 @@ EqualizerAudioProcessorEditor::~EqualizerAudioProcessorEditor()
 //==============================================================================
 void EqualizerAudioProcessorEditor::paint (Graphics& g)
 {
-
     g.fillAll(Colour(0xff323e44));
 
     {
@@ -372,6 +371,7 @@ void EqualizerAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
+
     label->setBounds(40, getHeight() - 46, 150, 24);
     label2->setBounds(234, getHeight() - 48, 150, 24);
     label3->setBounds(426, getHeight() - 48, 150, 24);
